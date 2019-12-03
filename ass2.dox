@@ -1,0 +1,165 @@
+                  ASSIGNMENT  NO-2
+Problem statement : Implement a class Complex which represents the Complex Number data type. Implement the following operations: 1. Constructor (including a default constructor which creates the complex number 0+0i). 2. Overloaded operator+ to add two complex numbers. 3. Overloaded operator* to multiply two complex number
+Aim: To use operator overloading concept to perform different operations on complex numbers.
+Description: We successfully implemented oop concepts for complex numbers operations. Different operations on complex numbers such as addition, subtraction and multiplication have done using overloaded operators +,- and * respectively. Also we have implemented << ,>>(Insertion and Extraction operators) to display values of complex numbers. We can perform operations on more than two numbers at a time as well.
+Oop Concepts Used:
+1) Constructors:
+A constructor is a member function of a class which initializes objects of a class. In C++ ,Constructor is automatically called when object(instance of class) create. It is special member function of the class.
+A constructor is different from normal functions in following ways:
+• Constructor has same name as the class itself
+• Constructors don’t have return type
+• A constructor is automatically called when an object is created.
+• If we do not specify a constructor, C++ compiler generates a default constructor for us (expects no parameters and has an empty body).
+Default Constructors: Default constructor is the constructor which doesn’t take any argument. It has no parameters.
+Parameterized Constructors: It is possible to pass arguments to constructors. Typically, these arguments help initialize an object when it is created. To create a parameterized constructor, simply add parameters to it the way you would to any other function. When you define the constructor’s body, use the parameters to initialize the object.
+Uses of Parameterized constructor:
+1. It is used to initialize the various data elements of different objects with different values when they are created. 
+Copy Constructor: A copy constructor is a member function which initializes an object using another object of the same class.
+2) Operator Overloading:
+In C++, we can make operators to work for user defined classes. This means C++ has the ability to provide the operators with a special meaning for a data type, this ability is known asoperator overloading. For example, we can overload an operator ‘+’ in a class like String so that we can concatenate two strings by just using +. Other example classes where arithmetic operators may be overloaded are Complex Number, Fractional Number, Big Integer, etc.
+What is the difference between operator functions and normal functions?
+Operator functions are same as normal functions. The only differences are, name of an operator  function is always operator keyword followed by symbol of operator and operator functions are called when the corresponding operator is used.
+This can be done by declaring the function, its syntax is,
+Return_Type classname :: 
+operator op(Argument list)
+{
+ Function Body
+}
+Operator Overloading can be done by using three approaches, they are
+1. Overloading unary operator.
+2. Overloading binary operator.
+3. Overloading binary operator using a friend function.
+Below are some criteria/rules to define the operator function:
+• In case of a non-static function, the binary operator should have only one argument and unary should not have an argument.
+• In the case of a friend function, the binary operator should have only two argument and unary should have only one argument.
+• All the class member object should be public if operator overloading is implemented.
+• Operators that cannot be overloaded are . .* :: ?: sizeof
+• Operator cannot be used to overload when declaring that function as friend function = () [] ->.
+Overloading Unary Operator: Let us consider to overload (-) unary operator. In unary operator function, no arguments should be passed. It works only with one class objects. It is a overloading of an operator operating on a single operand.
+Overloading Binary Operator: In binary operator overloading function, there should be one argument to be passed. It is overloading of an operator operating on two operands.
+Overloading Binary Operator using a Friend function: In this approach, the operator overloading function must precede with friend keyword, and declare a function class scope. Keeping in mind, friend operator function takes two parameters in a binary operator, varies one parameter in a unary operator.All the working and implementation would same as binary operator function except this function will
+be implemented outside of the class scope.erload constructors.
+ Program-
+#Include<bits/stdc++.h>
+
+Using namespace std;
+
+Class complex{
+
+	int real,imag;
+	public:
+		complex()		//default constructor
+		{
+			real=0;
+			imag=0;
+		}
+		friend ostream & operator <<(ostream &os,complex &c);
+		friend istream & operator >>(istream &in,complex &c);
+
+		complex operator +(complex b)		//+ binary oprator overloading
+		{
+			complex c;
+			c.real=real+b.real;
+			c.imag=imag+b.imag;
+			return c;
+		}
+		complex operator -(complex b)		//- binary operator overloading
+		{
+			complex c;
+			c.real=real-b.real;
+			c.imag=imag-b.imag;
+			return c;
+		}
+		complex operator *(complex b)		//* binary operator overloading
+		{
+			complex c;
+			c.real=(real*b.real)-(imag*b.imag);
+			c.imag=(real*b.imag)+(b.real*imag);
+			return c;
+		}
+};
+		//<< & >> operator overloading using friend functions
+		ostream & operator <<(ostream &os,complex &c)
+		{
+			if(c.imag>=0)
+			{
+				cout<<"complex number is:"<<c.real<<" + "<<c.imag<<" i "<<endl<<endl;
+			}
+			else
+			{
+				cout<<"complex number is:"<<c.real<<" "<<c.imag<<" i "<<endl;
+			}
+			return os;
+
+		}
+		istream & operator >>(istream &in,complex &c)
+		{
+			cout<<"enter complex number( format >>real>>imaginary)";
+			cin>>c.real>>c.imag;
+			return in;
+
+		}
+Int main()
+{
+	complex a[10],c;
+	int i,n,ch;
+	cout<<"enter how many complex numbers are there:"<<endl;
+	cin>>n;
+	for( i=0;i<n;i++)
+	{
+	cout<<"enter "<<i+1<<"th complex number"<<endl;
+		cin>>a[i];
+	}
+
+	//b.display();
+	do
+	{
+	cout<<"enter your choice:"<<endl<<"1.addition"<<endl<<"2.subtraction"<<endl<<"3.multiplicatio"<<endl<<"4.display answer"<<endl;
+
+	cin>>ch;
+	switch(ch)
+	{
+
+	case 1:
+	for( i=0;i<n;i++)
+		c=c+a[i];
+		cout<<c;
+	break;
+
+	case 2:
+	c=a[0];
+	for( i=1;i<n;i++)
+	{
+		c=c-a[i];
+	}
+	cout<<c;
+
+	break;
+
+	case 3:
+	c=a[0];
+		for( i=1;i<n;i++)
+		c=c*a[i];
+		cout<<c;
+	break;
+
+	case 4:
+		cout<<c;
+	break;
+
+	default:
+			cout<<"invalid choice...."<<endl;
+
+	}
+		cout<<"enter 1 to continue..."<<endl;
+		cin>>ch;
+	}while(ch==1);
+
+
+
+	//c.display();
+	return 0;
+}
+Output-
+
+ 

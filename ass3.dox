@@ -1,0 +1,94 @@
+ASSIGNMENT NO-3
+
+Problem statement:
+Implement c++  program to create a base class called shape . Use this  class to store two double type values that could be used to compute the area of figures . Derive two specific classes called  function get_data() to initialize base  
+Class data members and another member function display_area() to compute and display area of figures . Make classes to suit their requirements . Using  these three  classes , design a program that will accept dimmesion of a triangle or a rectangle interactively and display the area . Remember the two treated as lengths of two sides in the case of rectangle and as base and height in the case of triangles and used as follows:
+Area  of rectangle=x*y;
+Area of triangle=1/2*X*Y;
+Aim of Assignment:
+To understand concept of inheritance.
+Description:
+In that problem statement , there is used concept of inheritance .here shape is base class and rectangle , triangle are two classes are derived class . Using that classes  , calculate area of rectangle as well as area of triangle.
+OOP  concept used :
+Inheritance ,switch case.
+Program:
+#include<iostream>
+using namespace std;
+ class Shape
+{
+ public:
+     double length,width;
+     void get_data() //accept length and width
+     {
+       cout<<"Enter the length::";
+       cin>>length;
+       cout<<"Enter the width::";
+       cin>>width;
+     }
+     void display()  //display length and width
+     {
+         cout<<"length::"<<length;
+         cout<<"\t width::"<<width<<endl;
+     }
+};
+class rectangle:public Shape //inheritance base class shape
+{
+public:
+    double result;
+    void cal()    //calculate  area of rectangle
+    {
+        get_data();
+        display();
+        result=(length*width);
+    }
+    void display_area() //display area of rectangle
+    {
+        cout<<"area of rectangle::"<<result<<endl;
+    }
+};
+class triangle:public Shape //inheritance  of shape class
+{
+public:
+    double result;
+
+    void cal() //calculate area of triangle
+    {
+        get_data();
+        display();
+        result=(length*width)/2;
+    }
+    void display_area()  //display area of triangle
+    {
+        cout<<"area of triangle::"<<result<<endl;
+    }
+};
+int main()
+{
+    int ch;
+    char rep='n';
+    rectangle r;
+    triangle t;
+   do
+   {
+    cout<<"1.Area of rectangle 2.Area of triangle"<<endl;
+    cout<<"Enter the choice::";
+    cin>>ch;
+    switch(ch)  // switch case used for multiple operation
+    {
+case 1:
+    r.cal();
+    r.display_area();
+    break;
+case 2:
+    t.cal();
+    t.display_area();
+    break;
+default:
+    cout<<"Enter the valid choice::"<<endl;
+    break;
+    }
+    cout<<"do you want repeat process (Y/N)::";
+    cin>>rep;
+   }while(rep=='Y'||rep=='y');
+    return 0;
+}

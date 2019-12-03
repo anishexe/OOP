@@ -1,0 +1,25 @@
+ASSIGNMENT NUMBER 8
+
+STATEMENT:  Write a C++ program that creates an output file, writes information to it, closes the file and open it again as an input file and read the information from the file.
+
+ AIM:To create an output file to perform file related operations.
+
+DESCRIPTION: In C++ we have a set of file handling methods. These include ifstream, ofstream, and fstream. These classes are derived from fstrembase and from the corresponding iostream class. These classes, designed to manage the disk files, are declared in fstream and therefore we must include fstream and therefore we must include this file in any program that uses files.
+OOP CONCEPT USED: 
+F open : Opening a File
+Generally, the first operation performed on an object of one of these classes is to associate it to a real file. This procedure is known to open a file.
+We can open a file using any one of the following methods:
+1. First is bypassing the file name in constructor at the time of object creation.
+2. Second is using the open() function.
+To open a file use
+1	open() function
+Syntax
+1	void open(const char* file_name,ios::openmode mode);
+Here, the first argument of the open function defines the name and format of the file with the address of the file.
+The second argument represents the mode in which the file has to be opened. The following modes are used as per the requirements.
+
+1.	CONCLUSION:In this assignment, we learned file handling.
+
+
+
+
